@@ -1,9 +1,15 @@
+/**
+ * @ Author: Royyan Dzakiy
+ * @ Create Time: 2020-11-16 13:58:48
+ * @ Modified by: Royyan Dzakiy
+ * @ Modified time: 2020-11-18 13:22:12
+ * @ Description: Courtesy of royyandzakiy (https://github.com/royyandzakiy)
+ */
+
 /*
-    currently I am learning how rtos works. I learn how to use: tasks, queues, semaphores, pinned cores
-
     references:
+    - https://techtutorialsx.com/2017/05/06/esp32-arduino-creating-a-task/
     - freertos Queue API (https://www.freertos.org/a00018.html)
-
 */
 
 #include <Arduino.h>
@@ -20,8 +26,10 @@ void taskSemaphore(void *);
 QueueHandle_t queue;
 int queueSize = 10;
 
+//---- SEMAPHORES
+// analogy: see semaphores as batons that are needed to be retrieved for someone to proceed his run on a running competition
 int nTasks=5;
-SemaphoreHandle_t barrierSemaphore = xSemaphoreCreateCounting(nTasks, 0);
+SemaphoreHandle_t barrierSemaphore = xSemaphoreCreateCounting(nTasks, 0); 
 
 void setup() {
     Serial.begin(115200);
